@@ -34,8 +34,7 @@ jobs:
         run: docker build -t test_env -f tests/Dockerfile tests
 
       - name: Run web container
-        run: |
-          docker run --rm --network net -p 80:80 --name web -d web
+        run: docker run --rm --network net -p 80:80 --name web -d web
           
       - name: Wait for web server to be ready
         run: |
@@ -71,6 +70,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Wait for manual approval
-        run: echo "Waiting for manual approval (setup environment protection rules in GitHub Settings)"
+        uses: fjogeleit/http-request-action@v1
       - name: Deploy to Prod
         run: echo "Deploying to Production environment..."
