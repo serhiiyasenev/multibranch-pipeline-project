@@ -68,8 +68,8 @@ jobs:
     if: github.ref == 'refs/heads/prod'
     needs: build-test
     runs-on: ubuntu-latest
+    environment:
+      name: prod
     steps:
-      - name: Wait for manual approval
-        uses: fjogeleit/http-request-action@v1
       - name: Deploy to Prod
         run: echo "Deploying to Production environment..."
