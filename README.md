@@ -70,7 +70,7 @@ graph TD
 
 3. Ensures the visit counter increments upon page refresh.
 
-4. Tests run in headless mode using Xvfb and `Firefox`.
+4. Tests run in headless mode using `Chrome`.
 <br>
 
 🖼️ **CI/CD Workflow Diagram**
@@ -103,12 +103,12 @@ docker build -t test_env -f tests/Dockerfile tests/
 
 3. Run Redis
 ```bash
-docker run --rm --network net -p 6379:6379 --name redis -d redis
+docker run --rm --network net --name redis -p 6379:6379 -d redis
 ```
 
 4. Run Web Application
 ```bash
-docker run --rm --network net -p 80:80 --name web -d web
+docker run --rm --network net --name web -p 80:80 -d web
 ```
 
 5. Execute Tests
