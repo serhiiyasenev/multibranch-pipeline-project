@@ -21,7 +21,7 @@ class SeleniumTest(TestCase):
 
     def test_app(self):
         self.driver.get(f"http://{os.environ.get('APP_HOST', 'web')}")
-        header = self.driver.find_element(By.ID, 'header').text
+        header = self.driver.find_element(By.TAG_NAME, 'h3').text
         self.assertEqual(header, "Hello World!")
         visits_before_refresh = int(self.driver.find_element(By.ID,'visits').text)
         self.driver.refresh()
