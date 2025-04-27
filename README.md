@@ -90,15 +90,15 @@ graph TD
 ```
 
 🛠️ **Local Setup:**
-1. Build Docker Images
+1. Create Network
+```bash
+docker network create net
+```
+
+2. Build Docker Images
 ```bash
 docker build -t web .
 docker build -t test_env -f tests/Dockerfile tests/
-```
-
-2. Create Network
-```bash
-docker network create net
 ```
 
 3. Run Redis
