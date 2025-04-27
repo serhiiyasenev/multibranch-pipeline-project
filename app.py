@@ -2,12 +2,12 @@ from flask import Flask
 from redis import Redis
 
 app = Flask(__name__)
-redis = Redis(host="redis")
+redis = Redis(host="redis", port=6379)
 
 @app.route("/")
 def hello():
     visits = redis.incr('counter')
-    html = "<h3>Hello World!</h3>" \
+    html = "<h3 id='header'>Hello World!</h3>" \
            "<b>Visits:</b>" \
            "<b id='visits'>{visits}</b>" \
            "<br/>"

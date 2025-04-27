@@ -1,26 +1,29 @@
 import os
-import sys
-from selenium import webdriver
 from unittest import TestCase
-from xvfbwrapper import Xvfb
-
+from selenium import webdriver
+from selenium.webdriver.chrome.service import Service as ChromeService
+from selenium.webdriver.chrome.options import Options
+from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.common.by import By
 
 class SeleniumTest(TestCase):
 
     def setUp(self):
-        if sys.platform.startswith('linux') and not os.environ.get('DISPLAY'):
-            self.xvfb = Xvfb(width=1280, height=720)
-            self.xvfb.start()
-        self.driver = webdriver.Firefox()
+        options = Options()
+        options.add_argument("--headless")
+        options.add_argument("--no-sandbox")
+        options.add_argument("--disable-dev-shm-usage")
+        options.add_argument("--user-data-dir=/tmp/chrome-user-data")
+        self.driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=options)
 
     def tearDown(self):
         self.driver.close()
 
     def test_app(self):
-        self.driver.get("http://{}".format(os.environ.get('APP_HOST', 'web')))
-        header = self.driver.find_element_by_tag_name('h3').text
-        self.assertEquals(header, "Hello World!")
-        visits_before_refresh = int(self.driver.find_element_by_id('visits').text)
+        self.driver.get(f"http://{os.environ.get('APP_HOST', 'web')}")
+        header = self.driver.find_element(By.ID, 'header').text
+        self.assertEqual(header, "Hello World!")
+        visits_before_refresh = int(self.driver.find_element(By.ID,'visits').text)
         self.driver.refresh()
-        visits_after_refresh = int(self.driver.find_element_by_id('visits').text)
-        self.assertEquals(visits_after_refresh, visits_before_refresh + 1)
+        visits_after_refresh = int(self.driver.find_element(By.ID,'visits').text)
+        self.assertEqual(visits_after_refresh, visits_before_refresh + 1)

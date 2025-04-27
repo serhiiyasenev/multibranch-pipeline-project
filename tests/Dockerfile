@@ -1,20 +1,28 @@
-FROM ubuntu:16.04
+FROM python:3.13-slim
 
 WORKDIR /app/tests
 COPY . /app/tests
 
-RUN apt-get update
-RUN apt-get install -y python python-pip wget xvfb libssl-dev
-RUN pip install -r requirements.txt
+RUN apt-get update && apt-get install -y \
+    wget \
+    xvfb \
+    libssl-dev \
+    unzip \
+    gnupg \
+    curl \
+    && rm -rf /var/lib/apt/lists/*
 
-# Install and uninstall latest firefox to get all needed dependencies
-RUN apt-get -y install firefox && apt-get -y purge firefox
+RUN curl -fsSL https://dl.google.com/linux/linux_signing_key.pub | \
+    gpg --dearmor -o /usr/share/keyrings/google-chrome.gpg
 
-# Install Firefox 47.01
-RUN wget http://ftp.mozilla.org/pub/firefox/releases/47.0.1/linux-x86_64/en-US/firefox-47.0.1.tar.bz2 && \
-        tar -xjf firefox-47.0.1.tar.bz2 && \
-        mv firefox /opt/firefox47 && \
-    ln -s /opt/firefox47/firefox /usr/bin/firefox && \
-    rm firefox-47.0.1.tar.bz2
+RUN echo "deb [arch=amd64 signed-by=/usr/share/keyrings/google-chrome.gpg] \
+    http://dl.google.com/linux/chrome/deb/ stable main" > \
+    /etc/apt/sources.list.d/google-chrome.list
 
-CMD ["nosetests", "-v", "test.py"]
+RUN apt-get update && apt-get install -y google-chrome-stable
+
+COPY requirements.txt requirements.txt
+RUN pip install --upgrade pip
+RUN pip install --no-cache-dir -r requirements.txt
+
+CMD ["pytest", "-v", "test.py"]

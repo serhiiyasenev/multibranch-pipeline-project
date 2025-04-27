@@ -1,12 +1,13 @@
-FROM python:2.7
+FROM python:3.13-slim
 
 WORKDIR /app
 
-ADD requirements.txt /app/requirements.txt
-RUN pip install -r requirements.txt
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
 
-ADD app.py /app/app.py
+COPY app.py .
 
 EXPOSE 80
+EXPOSE 6379
 
 CMD ["python", "app.py"]
