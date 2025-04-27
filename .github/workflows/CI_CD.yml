@@ -48,11 +48,11 @@ jobs:
 
       - name: Run tests
         run: |
-          docker network create net
+          docker network create net || true
           docker run --rm --network net --name redis -d redis
-          docker run --rm --network net --name web -d ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.ref_name }}
+          docker run --rm --network net --name web -e REDIS_URL=redis://redis:6379/0 -p 80:80 -d ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.ref_name }}
           docker run --rm --network net -e APP_HOST=web ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}-test:${{ github.ref_name }}
-          docker kill web redis
+          docker kill web redis || true
 
   deploy-dev:
     if: github.ref == 'refs/heads/dev'
