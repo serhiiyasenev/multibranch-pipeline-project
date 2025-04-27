@@ -27,7 +27,6 @@ graph TD
   K --> K1[Dockerfile]
   K --> K2[requirements.txt]
   K --> K3[test.py]
-  K --> K4[test.pyc]
   L --> L1[workflows]
   L1 --> L2[ci.yml]
 ```
