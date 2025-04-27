@@ -39,7 +39,18 @@ jobs:
       - name: Run web container
         run: |
           docker run --rm --network net -p 80:80 --name web -d web
-
+          
+      - name: Wait for web server to be ready
+        run: |
+             for i in {1..30}; do
+                if curl -s http://web/ > /dev/null; then
+                  echo "Web server is ready!"
+                  break
+                fi
+                echo "Waiting for web server..."
+                sleep 1
+             done
+             
       - name: Run tests
         run: |
           docker run --network net test_env
