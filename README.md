@@ -36,23 +36,24 @@ graph TD
 🔨 Build and Test
 
 1. Checkout Code: retrieves the latest code from the repository.
-2. Build Docker Images:
+   
+3. Create Docker Network: establishes a network named `net` for container communication.
+   
+5. Build Docker Images:
    
    a. `web`: for the Flask application.
    
    b. `test_env`: for the testing environment with Selenium.
    
-3. Create Docker Network: establishes a network named `net` for container communication.
-   
-4. Run Containers:
+6. Run Containers:
    
    a. `Redis` (as a service).
    
    b. `Web` application.
 
-5. Execute Tests: runs Selenium tests within the `test_env` container.
+7. Execute Tests: runs Selenium tests within the `test_env` container.
    
-6. Cleanup: stops and removes containers after testing.
+8. Cleanup: stops and removes containers after testing.
 <br>
 
 📦 **Deployment:** sequential deployment
