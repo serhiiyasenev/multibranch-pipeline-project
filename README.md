@@ -17,7 +17,7 @@ graph TD
   A --> C[requirements.txt]
   A --> D[Dockerfile]
   A --> K[tests]
-  A --> L[workflows]
+  A --> L[.github/workflows]
   K --> K1[test.py]
   K --> K2[requirements.txt]
   K --> K3[Dockerfile]
