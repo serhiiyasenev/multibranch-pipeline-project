@@ -28,10 +28,10 @@ graph TD
   K --> K2[requirements.txt]
   K --> K3[test.py]
   L --> L1[workflows]
-  L1 --> L2[ci.yml]
+  L1 --> L2[CI_CD.yml]
 ```
 
-🚀 **CI/CD with GitHub Actions:** the `ci.yml` workflow automates the following processes:
+🚀 **CI/CD with GitHub Actions:** the `CI_CD.yml` workflow automates the following processes:
 
 🔨 Build and Test
 
