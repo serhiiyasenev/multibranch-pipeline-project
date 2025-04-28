@@ -24,6 +24,9 @@ graph TD
   L --> L1[CI_CD.yml]
 ```
 
+GitHub Actions Build & Deploy
+<div align="center"> <table> <tr> <td align="center"><b>Deploy from Dev branch</b></td> <td align="center"><b>Deploy from Prod branch</b></td> </tr> <tr> <td align="center"> <img src="./dev.jpg" alt="Dev branch deploy" style="max-width: 100%; height: auto;"/> </td> <td align="center"> <img src="./prod.jpg" alt="Prod branch deploy" style="max-width: 100%; height: auto;"/> </td> </tr> </table> </div>
+
 🚀 **CI/CD with GitHub Actions:** the `CI_CD.yml` workflow automates the following processes:
 
 🔨 Build and Test
