@@ -17,12 +17,11 @@ graph TD
   A --> C[requirements.txt]
   A --> D[Dockerfile]
   A --> K[tests]
-  A --> L[.github]
+  A --> L[workflows]
   K --> K1[test.py]
   K --> K2[requirements.txt]
   K --> K3[Dockerfile]
-  L --> L1[workflows]
-  L1 --> L2[CI_CD.yml]
+  L --> L1[CI_CD.yml]
 ```
 
 🚀 **CI/CD with GitHub Actions:** the `CI_CD.yml` workflow automates the following processes:
