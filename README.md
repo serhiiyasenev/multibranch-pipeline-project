@@ -16,33 +16,29 @@ graph TD
   A --> B[app.py]
   A --> C[requirements.txt]
   A --> D[Dockerfile]
-  A --> E[create_network.sh]
-  A --> F[Jenkinsfile]
-  A --> G[JF1]
-  A --> H[JF2]
-  A --> I[README.md]
-  A --> J[.gitignore]
   A --> K[tests]
-  A --> L[.github]
-  K --> K1[Dockerfile]
+  A --> L[.github/workflows]
+  K --> K1[test.py]
   K --> K2[requirements.txt]
-  K --> K3[test.py]
-  L --> L1[workflows]
-  L1 --> L2[ci.yml]
+  K --> K3[Dockerfile]
+  L --> L1[CI_CD.yml]
 ```
 
-🚀 **CI/CD with GitHub Actions:** the `ci.yml` workflow automates the following processes:
+<div align="center"> <table> <tr> <td align="center"><b>Deploy from Dev branch</b></td> <td align="center"><b>Deploy from Prod branch</b></td> </tr> <tr> <td align="center"> <img src="dev.jpg" alt="Dev branch deploy" style="max-width: 100%; height: auto;"/> </td> <td align="center"> <img src="prod.jpg" alt="Prod branch deploy" style="max-width: 100%; height: auto;"/> </td> </tr> </table> </div>
+
+🚀 **CI/CD with GitHub Actions:** the `CI_CD.yml` workflow automates the following processes:
 
 🔨 Build and Test
 
 1. Checkout Code: retrieves the latest code from the repository.
-2. Build Docker Images:
+   
+2. Create Docker Network: establishes a network named `net` for container communication.
+   
+3. Build Docker Images:
    
    a. `web`: for the Flask application.
    
    b. `test_env`: for the testing environment with Selenium.
-   
-3. Create Docker Network: establishes a network named `net` for container communication.
    
 4. Run Containers:
    
