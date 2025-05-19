@@ -58,7 +58,7 @@ graph TD
 2. `Prod`: deploys upon pushing to the `prod` branch, following manual approval.
 <br>
 
-🧪 **Testing with Selenium:** the tests perform the following checks:
+🧪 **Testing with Selenium:** The tests perform the following checks:
 
 1. Verifies the web application's accessibility.
    
