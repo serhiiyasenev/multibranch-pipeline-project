@@ -3,7 +3,7 @@
 📦 **Project Overview**
 
 This project demonstrates a comprehensive CI/CD pipeline for a Python application using Docker, Selenium, and GitHub Actions.
-
+ 
 It supports multibranch workflows with automated testing and conditional deployments for dev and prod branches.
 
 <br>
